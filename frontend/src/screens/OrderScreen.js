@@ -160,7 +160,7 @@ const OrderScreen = ({ match }) => {
                         </Col>
                         <Col md={4}>
                           {item.qty} x ${item.price} = $
-                          {item.qty * item.price}
+                          {(item.qty * item.price).toFixed(2)}
                         </Col>
                       </Row>
                     </ListGroup.Item>
