@@ -54,7 +54,7 @@ const UserListScreen = ({ history }) => {
         >
           <thead>
             <tr>
-              <th>ID</th>
+              <th>PF Number</th>
               <th>NAME</th>
               <th>EMAIL</th>
               <th>ADMIN</th>
@@ -64,7 +64,8 @@ const UserListScreen = ({ history }) => {
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user._id}</td>
+                <td>{user.pfNo}</td>
+                {/* {console.log(user)} */}
                 <td>{user.name}</td>
                 <td>
                   <a href={`mailto:${user.email}`}>
@@ -86,10 +87,10 @@ const UserListScreen = ({ history }) => {
                 </td>
                 <td>
                   <LinkContainer
-                    to={`/admin/user/${user._id}/edit`}
+                    to={`/admin/user/${user.pfNo}/edit`}
                   >
                     <Button
-                      variant='light'
+                      variant='success'
                       className='btn-sm'
                     >
                       <i className='fas fa-edit' />

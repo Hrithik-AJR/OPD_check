@@ -9,6 +9,7 @@ import FormContainer from '../components/FormContainer'
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
+  const [pfNo, setPfNo] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -36,7 +37,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(register(name, email, password))
+      dispatch(register(name, pfNo, email, password))
     }
   }
 
@@ -45,10 +46,10 @@ const RegisterScreen = ({ location, history }) => {
       <FormContainer>
         <h1>Sign Up</h1>
         {message && (
-          <Message variant='danger'>{message}</Message>
+          <Message variant='danger'>1{message}</Message>
         )}
         {error && (
-          <Message variant='danger'>{error}</Message>
+          <Message variant='danger'>2{error}</Message>
         )}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
@@ -69,6 +70,17 @@ const RegisterScreen = ({ location, history }) => {
               placeholder='Enter email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+
+          <Form.Group controlId='pfNo'>
+            <Form.Label>PF Number</Form.Label>
+            <Form.Control
+              
+              placeholder='Enter PF Number'
+              value={pfNo}
+              onChange={(e) => setPfNo(e.target.value)}
             ></Form.Control>
           </Form.Group>
 

@@ -65,6 +65,7 @@ const PlaceOrderScreen = ({ history }) => {
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
+        pfNo: cart.pfNo,
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
@@ -91,6 +92,12 @@ const PlaceOrderScreen = ({ history }) => {
                 {cart.shippingAddress.postalCode},
                 {cart.shippingAddress.country}
               </p>
+            </ListGroup.Item>
+
+            <ListGroup.Item>
+              <h2>PF Number</h2>
+              {/* <strong>Method: </strong> */}
+              {cart.shippingAddress.pfNo}
             </ListGroup.Item>
 
             <ListGroup.Item>
@@ -124,7 +131,7 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = $
+                          {item.qty} x ₹{item.price} = ₹
                           {item.qty * item.price}
                         </Col>
                       </Row>
@@ -145,25 +152,25 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>₹{cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col>₹{cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>₹{cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>₹{cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -177,10 +184,11 @@ const PlaceOrderScreen = ({ history }) => {
                 <Button
                   type='button'
                   className='btn-block'
+                  variant = 'success'
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  Place Order
+                  Maintain Stocks
                 </Button>
               </ListGroup.Item>
             </ListGroup>

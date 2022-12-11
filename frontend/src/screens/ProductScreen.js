@@ -11,7 +11,7 @@ import {
   Button,
   Form,
 } from 'react-bootstrap'
-import Rating from '../components/Rating'
+// import Rating from '../components/Rating'
 import {
   listProductDetails,
   createProductReview,
@@ -33,15 +33,15 @@ const ProductScreen = ({ history, match }) => {
   const { loading, error, product } = productDetails
 
   const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  // const { userInfo } = userLogin
 
   const productReviewCreate = useSelector(
     (state) => state.productReviewCreate
   )
   const {
     success: successProductReview,
-    loading: loadingProductReview,
-    error: errorProductReview,
+    // loading: loadingProductReview,
+    // error: errorProductReview,
   } = productReviewCreate
 
   useEffect(() => {
@@ -94,14 +94,14 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroup.Item>
                   <h3>{product.name}</h3>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                {/* <ListGroup.Item>
                   <Rating
                     value={product.rating}
                     text={`${product.numReviews} reviews`}
                   />
-                </ListGroup.Item>
+                </ListGroup.Item> */}
                 <ListGroup.Item>
-                  Price: ${product.price}
+                  Price: ₹{product.price}
                 </ListGroup.Item>
                 <ListGroup.Item>
                   Description: {product.description}
@@ -115,7 +115,7 @@ const ProductScreen = ({ history, match }) => {
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong>₹{product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -165,6 +165,7 @@ const ProductScreen = ({ history, match }) => {
                       onClick={addToCartHandler}
                       className='btn-block'
                       type='button'
+                      variant = 'success'
                       disabled={product.countInStock === 0}
                     >
                       Add To Cart
@@ -174,7 +175,7 @@ const ProductScreen = ({ history, match }) => {
               </Card>
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col md={6}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && (
@@ -264,7 +265,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-          </Row>
+          </Row> */}
         </>
       )}
     </>

@@ -12,6 +12,7 @@ const ShippingScreen = ({ history }) => {
   const [address, setAddress] = useState(
     shippingAddress.address
   )
+  const [pfNo, setPfNo] = useState(shippingAddress.pfNo)
   const [city, setCity] = useState(shippingAddress.city)
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode
@@ -26,6 +27,7 @@ const ShippingScreen = ({ history }) => {
     e.preventDefault()
     dispatch(
       saveShippingAddress({
+        pfNo,
         address,
         city,
         postalCode,
@@ -40,6 +42,19 @@ const ShippingScreen = ({ history }) => {
       <CheckoutSteps step1 step2 />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
+
+      <Form.Group controlId='pfNo'>
+          <Form.Label>PF Number</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Enter PF number'
+            value={pfNo}
+            required
+            onChange={(e) => setPfNo(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+
         <Form.Group controlId='address'>
           <Form.Label>Address</Form.Label>
           <Form.Control
@@ -84,7 +99,7 @@ const ShippingScreen = ({ history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='success'>
           Continue
         </Button>
       </Form>

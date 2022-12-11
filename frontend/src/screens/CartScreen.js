@@ -45,7 +45,7 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1>Medicine Stocks</h1>
         {cartItems.length === 0 ? (
           <Message>
             Your cart is empty <Link to='/'>Go Back</Link>
@@ -68,7 +68,7 @@ const CartScreen = ({ match, location, history }) => {
                       {item.name}
                     </Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
+                  <Col md={2}>₹{item.price}</Col>
                   <Col md={2}>
                     <Form.Control
                       as='select'
@@ -120,7 +120,7 @@ const CartScreen = ({ match, location, history }) => {
                 )}
                 ) items
               </h2>
-              $
+              ₹
               {cartItems
                 .reduce(
                   (acc, item) =>
@@ -132,7 +132,7 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <Button
                 type='button'
-                className='btn-block'
+                className='btn-success'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >

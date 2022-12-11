@@ -7,6 +7,9 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    pfNo:{
+      type:String,
+    },
     email: {
       type: String,
       required: true,

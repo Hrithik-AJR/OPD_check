@@ -1,118 +1,147 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button,} from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
+import React,{useState,useEffect} from 'react'
+import { Link  , useParams } from 'react-router-dom'
+import Axios from 'axios'
+// import {
+//   Row,
+//   Col,
+//   ListGroup,
+//   Card,
+// } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import {
-  getUserDetails,
-  updateUser,
-} from '../actions/userActions'
-import FormContainer from '../components/FormContainer'
-import { USER_UPDATE_RESET } from '../constants/userConstants'
+  Form,
+  Button,
+  Row,
+  Col,
+  Table,
+} from 'react-bootstrap'
+import HomeScreen from './HomeScreen'
+const UserEditScreen = () => { 
+  let { id } = useParams();
+  const [orders, setOrders] = useState([])
+useEffect(async() => {
+  
+  try {
+    const { data } = await Axios({
+        method: 'get',
+        url: `/api/orders/${id}/pf`,
+    });
 
-const UserEditScreen = ({ match, history }) => {
-  const userId = match.params.id
-
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [isAdmin, setIsAdmin] = useState('')
-
-  const dispatch = useDispatch()
-
-  const userDetails = useSelector(
-    (state) => state.userDetails
-  )
-  const { loading, error, user } = userDetails
-
-  const userUpdate = useSelector(
-    (state) => state.userUpdate
-  )
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = userUpdate
-
-  useEffect(() => {
-    if (successUpdate) {
-      dispatch({ type: USER_UPDATE_RESET })
-      history.push('/admin/userlist')
+    console.log(data);
+    setOrders(data);
+} catch (err) {
+    if (err.response.status === 404) {
+        console.log('Resource could not be found!');
     } else {
-      if (!user.name || user._id !== userId) {
-        dispatch(getUserDetails(userId))
-      } else {
-        setName(user.name)
-        setEmail(user.email)
-        setIsAdmin(user.isAdmin)
-      }
+        console.log(err.message);
     }
-  }, [dispatch, userId, user, successUpdate, history])
+}
+ 
+}, [])
 
-  const submitHandler = (e) => {
-    e.preventDefault()
-    dispatch(
-      updateUser({ _id: userId, name, email, isAdmin })
-    )
-  }
+
 
   return (
     <>
+
+    {/* <HomeScreen/> */}
+
       <Link
         to='/admin/userlist'
         className='btn btn-light my-3'
       >
         Go Back
-      </Link>
-      <FormContainer>
-        <h1>Edit User</h1>
-        {loadingUpdate && <Loader />}
-        {errorUpdate && (
-          <Message variant='danger'>{errorUpdate}</Message>
-        )}
-        {loading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant='danger'>{error}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+      </Link>      
+          
+      <h1>Manage Faculty Purchases</h1>
+    <Row>
+     
+          {/* <Card>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <h2>Order Summary</h2>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Items</Col>
+                  <Col>multivitamin</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Total</Col>
+                  <Col>$500</Col>
+                </Row>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card> */}
 
-            <Form.Group controlId='email'>
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='Enter email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
 
-            <Form.Group controlId='isAdmin'>
-              <Form.Check
-                type='checkbox'
-                label='Is Admin'
-                checked={isAdmin}
-                onChange={(e) =>
-                  setIsAdmin(e.target.checked)
-                }
-              ></Form.Check>
-            </Form.Group>
-
-            <Button type='submit' variant='primary'>
-              Update
-            </Button>
-          </Form>
-        )}
-      </FormContainer>
+<Table
+            striped
+            bordered
+            hover
+            responsive
+            className='table-sm'
+          >
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>PF Number</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>
+                    {order.createdAt.substring(0, 10)}
+                  </td>
+                  <td>{order.shippingAddress.pfNo}</td>
+                  <td>{order.totalPrice}</td>
+                  <td>
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <i
+                        className='fas fa-times'
+                        style={{ color: 'red' }}
+                      />
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <i
+                        className='fas fa-times'
+                        style={{ color: 'red' }}
+                      />
+                    )}
+                  </td>
+                  <td>
+                    <LinkContainer
+                      to={`/order/${order._id}`}
+                    >
+                      <Button
+                        className='btn-sm'
+                        variant='success'
+                      >
+                        Details
+                      </Button>
+                    </LinkContainer>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+   
+      </Row>
     </>
   )
 }

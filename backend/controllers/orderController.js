@@ -6,6 +6,7 @@ import Order from '../models/orderModel.js'
 // @access Private
 const addOrderItems = asyncHandler(async (req, res) => {
   const {
+  
     orderItems,
     paymentMethod,
     itemsPrice,
@@ -38,10 +39,27 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
 // @desc Get order by ID
 // @route GET /api/orders/:id
-// @access Private
+// @access public
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(
     req.params.id
+  ).populate('user', 'name email')
+
+  if (order) {
+    res.json(order)
+  } else {
+    res.status(404)
+    throw new Error('Order not found')
+  }
+})
+
+const getOrderBypF = asyncHandler(async (req, res) => {
+  console.log(req.params.id)
+  const order = await Order.find(
+  {  'shippingAddress.pfNo': req.params.id
+     
+  }  
+  // {taxPrice:2115.6}
   ).populate('user', 'name email')
 
   if (order) {
@@ -126,4 +144,5 @@ export {
   updateOrderToDelivered,
   getMyOrders,
   getOrders,
+  getOrderBypF
 }

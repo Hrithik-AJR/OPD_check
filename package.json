@@ -1,7 +1,7 @@
 {
-  "name": "proshop",
+  "name": "opd-nitjsr",
   "version": "1.0.0",
-  "description": "MERN shopping car app",
+  "description": "OPD-nitjsr",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prakalpshakya31/ProShop.git"
+    "url": "git+https://github.com/suryansh882/ProShop.git"
   },
-  "author": "Prakalp Shakya",
+  "author": "Suryansh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/prakalpshakya31/ProShop/issues"
+    "url": "https://github.com/suryansh882/ProShop/issues"
   },
-  "homepage": "https://github.com/prakalpshakya31/ProShop#readme",
+  "homepage": "https://github.com/suryansh882/ProShop#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",

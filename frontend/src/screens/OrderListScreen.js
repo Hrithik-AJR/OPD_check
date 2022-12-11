@@ -41,7 +41,7 @@ const OrderListScreen = ({ history }) => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>USER</th>
+              <th>PF No</th>
               <th>DATE</th>
               <th>TOTAL</th>
               <th>PAID</th>
@@ -52,10 +52,11 @@ const OrderListScreen = ({ history }) => {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
+                {/* {console.log(order)} */}
                 <td>{order._id}</td>
-                <td>{order.user && order.user.name}</td>
+                <td>{order.user && order.shippingAddress.pfNo}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
+                <td>₹{order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
@@ -81,7 +82,7 @@ const OrderListScreen = ({ history }) => {
                     to={`/order/${order._id}`}
                   >
                     <Button
-                      variant='light'
+                      variant='success'
                       className='btn-sm'
                     >
                       Details

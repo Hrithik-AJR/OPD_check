@@ -1,12 +1,12 @@
 const products = [
   {
-    name: 'Airpods Wireless Bluetooth Headphones',
-    image: '/images/airpods.jpg',
+    name: 'Paracetamol',
+    image: '/images/paracetamol.jpeg',
     description:
-      'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-    brand: 'Apple',
-    category: 'Electronics',
-    price: 89.99,
+      'Paracetamol Dolo 650 not only helps in reducing the fever, it also has an analgesic effect. It can help in reducing pains, mainly in headaches, musculoskeletal pains, migraine pains as also helps in reducing joint pains like osteoarthritic.',
+    brand: 'Paracetamol',
+    category: 'Medicines',
+    price: 29.99,
     countInStock: 10,
     rating: 0,
     numReviews: 0,
@@ -18,7 +18,7 @@ const products = [
       'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
     brand: 'Apple',
     category: 'Electronics',
-    price: 599.99,
+    price: 599,
     countInStock: 7,
     rating: 0,
     numReviews: 0,

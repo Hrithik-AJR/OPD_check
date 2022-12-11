@@ -141,7 +141,7 @@ const ProfileScreen = ({ location, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
+            <Button type='submit' variant='success'>
               Update
             </Button>
           </Form>
@@ -165,6 +165,7 @@ const ProfileScreen = ({ location, history }) => {
               <tr>
                 <th>ID</th>
                 <th>DATE</th>
+                <th>PF Number</th>
                 <th>TOTAL</th>
                 <th>PAID</th>
                 <th>DELIVERED</th>
@@ -178,6 +179,7 @@ const ProfileScreen = ({ location, history }) => {
                   <td>
                     {order.createdAt.substring(0, 10)}
                   </td>
+                  <td>{order.shippingAddress.pfNo}</td>
                   <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
@@ -205,7 +207,7 @@ const ProfileScreen = ({ location, history }) => {
                     >
                       <Button
                         className='btn-sm'
-                        variant='light'
+                        variant='success'
                       >
                         Details
                       </Button>
