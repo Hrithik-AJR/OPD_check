@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useState, useEffect } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -8,10 +8,11 @@ import {
   deleteUser,
 } from '../actions/userActions'
 import { LinkContainer } from 'react-router-bootstrap'
+import Prescription from './Prescription'
 
 const UserListScreen = ({ history }) => {
   const dispatch = useDispatch()
-
+  // const [pf, setPf] = useState("")
   const userList = useSelector((state) => state.userList)
   const { loading, error, users } = userList
 
@@ -40,6 +41,9 @@ const UserListScreen = ({ history }) => {
   return (
     <>
       <h1>Users</h1>
+      <div>
+       
+      </div>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -58,6 +62,7 @@ const UserListScreen = ({ history }) => {
               <th>NAME</th>
               <th>EMAIL</th>
               <th>ADMIN</th>
+              <th>Prescription</th>
               <th></th>
             </tr>
           </thead>
@@ -72,6 +77,7 @@ const UserListScreen = ({ history }) => {
                     {user.email}
                   </a>
                 </td>
+               
                 <td>
                   {user.isAdmin ? (
                     <i
@@ -84,6 +90,9 @@ const UserListScreen = ({ history }) => {
                       style={{ color: 'red' }}
                     />
                   )}
+                </td>
+                <td>
+                   <Prescription data={user.pfNo}/>
                 </td>
                 <td>
                   <LinkContainer

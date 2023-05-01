@@ -9,12 +9,19 @@ import {
   deleteUser,
   getUserById,
   updateUser,
+  updatePres,
+  getPres
 } from '../controllers/userController.js'
 import {
   protect,
   admin,
 } from '../middleware/authMiddleware.js'
-
+router
+  .route('/prescription/:pfNo')
+  .get(getPres)
+router
+  .route('/prescription/:pfNo')
+  .put(updatePres)  
 router
   .route('/')
   .post(registerUser)

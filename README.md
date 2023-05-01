@@ -1,27 +1,3 @@
-# ProShop eCommerce Platform
-
-> eCommerce platform built with the MERN stack & Redux.
-
-![screenshot](https://github.com/prakalpshakya31/ProShop/blob/master/uploads/Screenshot%202021-09-21%20102444.png)
-![screenshot](https://github.com/prakalpshakya31/ProShop/blob/master/uploads/Screenshot%202021-09-21%20102637.png)
-![screenshot](https://github.com/prakalpshakya31/ProShop/blob/master/uploads/Screenshot%202021-09-21%20102911.png)
-
-## Features
-
-- Full featured shopping cart
-- Product reviews and ratings
-- Top products carousel
-- Product pagination
-- Product search feature
-- User profile with orders
-- Admin product management
-- Admin user management
-- Admin Order details page
-- Mark orders as delivered option
-- Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
-- Database seeder (products & users)
-
 ### Env Variables
 
 Create a .env file in the root and add the following
@@ -60,8 +36,6 @@ cd frontend
 npm run build
 ```
 
-There is a Heroku postbuild script, so if you push to Heroku, no need to build manually for deployment to Heroku
-
 ### Seed Database
 
 You can use the following commands to seed the database with some sample users and products as well as destroy all data
@@ -80,9 +54,9 @@ Sample User Logins
 admin@gmail.com (Admin)
 123456
 
-john@gmail.com (Customer)
-123456
+kk@gmail.com (Faculty)
+123
 
-jane@gmail.com (Customer)
-123456
+vinay@gmail.com(Faculty)
+123
 ```

@@ -128,7 +128,7 @@ const OrderScreen = ({ match, history }) => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h2>Info</h2>
               <p>
                 <strong>Name: </strong> {order.user.name}
               </p>
@@ -140,13 +140,16 @@ const OrderScreen = ({ match, history }) => {
               </p>
               <p>
                 <strong>Address: </strong>
-                {order.shippingAddress.pfNo},
                 {order.shippingAddress.address},
                 {order.shippingAddress.city},
                 {order.shippingAddress.postalCode},
                 {order.shippingAddress.country}
               </p>
-              {order.isDelivered ? (
+              <p>
+              <strong>PF Number: </strong>
+              {order.shippingAddress.pfNo}
+              </p>
+              {/* {order.isDelivered ? (
                 <Message variant='success'>
                   Delivered on {order.deliveredAt}
                 </Message>
@@ -154,9 +157,9 @@ const OrderScreen = ({ match, history }) => {
                 <Message variant='danger'>
                   Not Delivered
                 </Message>
-              )}
+              )} */}
             </ListGroup.Item>
-
+{/* 
             <ListGroup.Item>
               <h2>Payment Method</h2>
               <p>
@@ -170,7 +173,7 @@ const OrderScreen = ({ match, history }) => {
               ) : (
                 <Message variant='danger'>Not Paid</Message>
               )}
-            </ListGroup.Item>
+            </ListGroup.Item> */}
 
             <ListGroup.Item>
               <h2>Order Items</h2>
@@ -241,7 +244,7 @@ const OrderScreen = ({ match, history }) => {
                   <Col>₹{order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {/* {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
@@ -268,7 +271,7 @@ const OrderScreen = ({ match, history }) => {
                       Mark as Delivered
                     </Button>
                   </ListGroup.Item>
-                )}
+                )} */}
             </ListGroup>
           </Card>
         </Col>

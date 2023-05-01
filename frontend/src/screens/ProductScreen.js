@@ -82,14 +82,14 @@ const ProductScreen = ({ history, match }) => {
         <>
           <Meta title={product.name} />
           <Row>
-            <Col md={6}>
+            {/* <Col md={6}>
               <Image
                 src={product.image}
                 alt={product.name}
                 fluid
               />
-            </Col>
-            <Col md={3}>
+            </Col> */}
+            <Col md={6}>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <h3>{product.name}</h3>

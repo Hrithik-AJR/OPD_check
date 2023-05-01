@@ -16,14 +16,15 @@ import {
 } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
-
+import axios from 'axios'
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
-
+  const [pfNo, setPfNo] = useState("");
+  const [prescription , setPrescription] = useState("");
   const dispatch = useDispatch()
 
   const userDetails = useSelector(
@@ -59,10 +60,27 @@ const ProfileScreen = ({ location, history }) => {
       } else {
         setName(user.name)
         setEmail(user.email)
+        setPfNo(user.pfNo)
+        if(user.prescription){
+          setPrescription(user.prescription)
+        }
       }
     }
   }, [dispatch, history, userInfo, user, success])
 
+  
+  useEffect( async () => {
+    
+    await axios.get(`http://localhost:5000/api/users/prescription/${pfNo}`)
+    .then((response) => {
+        // console.log("getting data ",response.data.prescription)
+        if(response.data.prescription){
+           setPrescription(response.data.prescription)
+        }
+    }).catch((err)=>{console.log(err);}); 
+
+    
+  }, [])
   const submitHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
@@ -116,7 +134,26 @@ const ProfileScreen = ({ location, history }) => {
                 onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
+            <Form.Group controlId='password'>
+              <Form.Label>PF Number</Form.Label>
+              <Form.Control
+                type='text'
+                // placeholder=''
+                value={pfNo}
+                disabled
+              ></Form.Control>
+            </Form.Group> <Form.Group controlId='password'>
+              <Form.Label>Prescription</Form.Label>
+              <Form.Control
+                type='text'
+                // placeholder='Enter password'
+                value={prescription}
+                // onChange={(e) =>
+                //   setPassword(e.target.value)
+                // }
+                disabled
+              ></Form.Control>
+            </Form.Group>
             <Form.Group controlId='password'>
               <Form.Label>Password</Form.Label>
               <Form.Control

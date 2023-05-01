@@ -10,6 +10,11 @@ const userSchema = mongoose.Schema(
     pfNo:{
       type:String,
     },
+
+    prescription:{
+      type:String,
+    },
+    
     email: {
       type: String,
       required: true,

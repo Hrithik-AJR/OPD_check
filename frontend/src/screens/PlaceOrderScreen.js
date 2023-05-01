@@ -37,6 +37,7 @@ const PlaceOrderScreen = ({ history }) => {
       0
     )
   )
+
   cart.shippingPrice = addDecimals(
     cart.itemsPrice > 100 ? 0 : 100
   )
@@ -53,6 +54,8 @@ const PlaceOrderScreen = ({ history }) => {
     (state) => state.orderCreate
   )
   const { order, success, error } = orderCreate
+
+
 
   useEffect(() => {
     if (success) {
@@ -76,7 +79,6 @@ const PlaceOrderScreen = ({ history }) => {
       })
     )
   }
-
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -84,7 +86,7 @@ const PlaceOrderScreen = ({ history }) => {
         <Col md={8}>
           <ListGroup variant='flush'>
             <ListGroup.Item>
-              <h2>Shipping</h2>
+              <h3>Shipping</h3>
               <p>
                 <strong>Address: </strong>
                 {cart.shippingAddress.address},
@@ -95,19 +97,19 @@ const PlaceOrderScreen = ({ history }) => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>PF Number</h2>
+              <h3>PF Number</h3>
               {/* <strong>Method: </strong> */}
               {cart.shippingAddress.pfNo}
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Payment Method</h2>
+              <h3>Payment Method</h3>
               <strong>Method: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Order Items</h2>
+              <h3>Order Items</h3>
               {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
@@ -115,14 +117,14 @@ const PlaceOrderScreen = ({ history }) => {
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
-                        <Col md={1}>
+                        {/* <Col md={1}>
                           <Image
                             src={item.image}
                             alt={item.name}
                             fluid
                             rounded
                           />
-                        </Col>
+                        </Col> */}
                         <Col>
                           <Link
                             to={`/product/${item.product}`}

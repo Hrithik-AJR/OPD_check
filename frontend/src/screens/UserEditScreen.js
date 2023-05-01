@@ -76,7 +76,7 @@ useEffect(async() => {
             </ListGroup>
           </Card> */}
 
-
+{/* <h4>Total -456</h4> */}
 <Table
             striped
             bordered
@@ -88,13 +88,15 @@ useEffect(async() => {
               <tr>
                 <th>ID</th>
                 <th>DATE</th>
+                <th>NAME</th>
                 <th>PF Number</th>
                 <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
+                {/* <th>PAID</th> */}
+                {/* <th>DELIVERED</th> */}
                 <th></th>
               </tr>
             </thead>
+           
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id}>
@@ -102,9 +104,10 @@ useEffect(async() => {
                   <td>
                     {order.createdAt.substring(0, 10)}
                   </td>
+                  <td>{order.shippingAddress.city}</td>
                   <td>{order.shippingAddress.pfNo}</td>
                   <td>{order.totalPrice}</td>
-                  <td>
+                  {/* <td>
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
@@ -123,7 +126,7 @@ useEffect(async() => {
                         style={{ color: 'red' }}
                       />
                     )}
-                  </td>
+                  </td> */}
                   <td>
                     <LinkContainer
                       to={`/order/${order._id}`}

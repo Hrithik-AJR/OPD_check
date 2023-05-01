@@ -47,6 +47,12 @@ const Header = () => {
                   Cart
                 </Nav.Link>
               </LinkContainer>
+              {/* <LinkContainer to='/excel'>
+                <Nav.Link>
+                  <i className='fas fa-file-excel'></i>
+                  Excel
+                </Nav.Link>
+              </LinkContainer> */}
               {userInfo ? (
                 <NavDropdown
                   title={userInfo.name}

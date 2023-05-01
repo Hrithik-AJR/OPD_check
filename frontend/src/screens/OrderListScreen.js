@@ -45,7 +45,7 @@ const OrderListScreen = ({ history }) => {
               <th>DATE</th>
               <th>TOTAL</th>
               <th>PAID</th>
-              <th>DELIVERED</th>
+              {/* <th>DELIVERED</th> */}
               <th></th>
             </tr>
           </thead>
@@ -67,7 +67,7 @@ const OrderListScreen = ({ history }) => {
                     />
                   )}
                 </td>
-                <td>
+                {/* <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
@@ -76,7 +76,7 @@ const OrderListScreen = ({ history }) => {
                       style={{ color: 'red' }}
                     />
                   )}
-                </td>
+                </td> */}
                 <td>
                   <LinkContainer
                     to={`/order/${order._id}`}

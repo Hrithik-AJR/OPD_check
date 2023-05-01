@@ -13,6 +13,8 @@ import {
 } from './middleware/errorMiddleware.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 import { error } from 'console'
+import cors from 'cors'
+
 
 dotenv.config()
 
@@ -24,6 +26,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
+app.use(cors())
 app.use(express.json())
 
 app.use('/api/products', productRoutes)

@@ -20,7 +20,7 @@ import UserEditScreen from './screens/UserEditScreen'
 import ProductListScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import OrderListScreen from './screens/OrderListScreen'
-
+import excel from './screens/excel'
 const App = () => {
   return (
     <Router>
@@ -31,6 +31,10 @@ const App = () => {
           <Route
             path='/register'
             component={RegisterScreen}
+          />
+          <Route
+            path='/excel'
+            component={excel}
           />
           <Route
             path='/shipping'

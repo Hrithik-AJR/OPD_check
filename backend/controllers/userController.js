@@ -42,6 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
     pfNo,
     email,
     password,
+    prescription:null
   })
 
   if (user) {
@@ -51,6 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
       pfNo:user.pfNo,
       email: user.email,
       isAdmin: user.isAdmin,
+      prescription: user.prescription,
       token: generateToken(user._id),
     })
   } else {
@@ -71,6 +73,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       name: user.name,
       pfNo:user.pfNo,
       email: user.email,
+      prescription:user.prescription,
       isAdmin: user.isAdmin,
     })
   } else {
@@ -113,6 +116,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({})
   res.json(users)
+})
+
+const getPres = asyncHandler(async (req, res) => {
+ const users = await User.findOne({ pfNo : req.params.pfNo})
+ if(users){
+  res.send(users)
+ }
 })
 
 // @desc Delete user
@@ -170,6 +180,43 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 })
 
+
+const updatePres = asyncHandler(async (req, res) => {
+  const user = await User.findOne({pfNo: req.params.pfNo});
+  // const user = await User.find({ pfNo : req.params.pfNo})
+  // console.log(user[0].)
+  console.log(req.body);
+  if(req.body.prescription){
+  const updatedUser = await User.updateOne({ pfNo : req.params.pfNo }, { $set:{"prescription":req.body.prescription}})
+  // console.log(req.body,"===>",updatedUser);
+  }
+  res.send({
+    "user": user ,
+    "updateStatus":"success"
+  })
+  // if (true) {
+  //   // user.prescription = req.body.prescription || user.prescription
+  //   // user.disease = req.body.disease || user.disease
+    
+  //   // console.log("user=== ",user);
+  //   // const updatedUser = await user.save()
+
+  //   // res.json({
+  //   //   _id: updatedUser._id,
+  //   //   name: updatedUser.name,
+  //   //   prescription: updatedUser.prescription,
+  //   //   isAdmin: updatedUser.isAdmin,
+  //   // })
+   
+  // } else {
+  //   console.log("============");
+  //   res.status(404)
+
+  //   throw new Error('User not found')
+  // }
+})
+
+
 export {
   authUser,
   registerUser,
@@ -178,5 +225,7 @@ export {
   getUsers,
   deleteUser,
   getUserById,
-  updateUser
+  updateUser,
+  updatePres,
+  getPres
 }
